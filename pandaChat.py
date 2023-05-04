@@ -1,12 +1,14 @@
-import speech_recognition as sr
+import os
+import SpeechRecognition as sr
 import pyttsx3
 import openai
 
 # Init
 
-forever = 220 
+forever = 20
 
-def doGetSpeechFromUser():
+
+def do_get_speech_from_user():
     """
     """
     audio2 = None
@@ -32,7 +34,8 @@ def doGetSpeechFromUser():
         print("unknown error occurred")
     return audio2
 
-def doTransformSpeechToTxt(audio):
+
+def do_transform_speech_to_txt(audio):
     """
     """
     # Initialize the recognizer
@@ -44,36 +47,34 @@ def doTransformSpeechToTxt(audio):
     except:
         print("ERROR")
 
-        
     text = text.lower()
     print(text)
     return text
 
-def doTalkToGpt(prompt):
+
+def do_talk_to_gpt(prompt):
     """
     """
     reply = None
     print('talking to gpt')
     return reply
 
-def doSpeak(text):
+
+def do_speak(text):
     """
     """
     print('Speak')
     return
 
 
+while forever:
+    audio = do_get_speech_from_user()
+    # print(type(audio))
 
+    prompt = do_transform_speech_to_txt(audio)
 
-while(forever):
-       audio = doGetSpeechFromUser()
-       #print(type(audio))
+    reply = do_talk_to_gpt(prompt)
 
-       prompt = doTransformSpeechToTxt(audio)
+    do_speak(reply)
 
-       reply = doTalkToGpt(prompt)
-
-       doSpeak(reply)
-
-       forever = forever -1 
-
+    forever = forever - 1
