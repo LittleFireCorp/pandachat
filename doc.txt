@@ -1,0 +1,23 @@
+ 
+
+# Initialize
+
+
+# Loop untilinstructed otherwise
+
+	# Get speech from user
+
+
+	# transform speech to text
+
+	# give text to gpt
+
+	# get gpt reply 
+
+
+	# transforn reply to speech
+
+# On terminate cleanup and exit
+
+
+
