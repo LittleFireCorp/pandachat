@@ -1,11 +1,22 @@
 import os
-import SpeechRecognition as sr
+import pyaudio
+import speech_recognition as sr
 import pyttsx3
 import openai
+
+openai.api_key = "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"
 
 # Init
 
 forever = 20
+
+
+
+def list_engines():
+    engines = openai.Engine.list()
+    for engine in engines['data']:
+        print(engine)
+    return
 
 
 def do_get_speech_from_user():
@@ -56,14 +67,24 @@ def do_talk_to_gpt(prompt):
     """
     """
     reply = None
-    print('talking to gpt')
-    return reply
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    reply_text = response.choices[0].text
+    return reply_text.strip()
 
 
 def do_speak(text):
     """
     """
-    print('Speak')
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
     return
 
 
